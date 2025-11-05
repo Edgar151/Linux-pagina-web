@@ -151,3 +151,35 @@ spline-viewer{
   outline: none;
   pointer-events: none;
 }
+
+/* Imagen que aparece debajo de las tarjetas */
+.image-container {
+  display: none; /* inicialmente oculta */
+  justify-content: center;
+  margin-top: 14px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.image-container img {
+  width: 90%;
+  border-radius: 24px;
+  box-shadow: var(--elev-soft);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-container img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
