@@ -147,7 +147,7 @@ const allCards = document.querySelectorAll(".card");
 let activeIndex = 0;
 
 function updateCardColors() {
-  allCards.forEach((card, i) => {
+    allCards.forEach((card, i) => {
     card.classList.toggle("active", i === activeIndex);
   });
 }
