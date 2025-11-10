@@ -93,7 +93,7 @@ body{margin:0; background:#efefef; font-family:var(--font); color:var(--ink)}
 }
 .card__title{margin:0; font-size:1.05rem}
 .card__desc{margin:.25rem 0 0; font-size:.92rem; opacity:.85}
-
+.card--primary{background:var(--blue); color:#fff}
 .card::after{
   content:attr(data-letter);
   position:absolute; right:14px; top:50%; transform:translateY(-50%);
@@ -152,21 +152,15 @@ spline-viewer{
   pointer-events: none;
 }
 
-  /* Colores específicos para cada tarjeta */
-  .card[data-letter="A"].active {
-    background-color: #ff4747; /* color del Alert 911 */
-    color: white;
-  }
-  .card[data-letter="B"].active {
-    background-color: #ffbb33; /* color del Bleeding */
-    color: white;
-  }
-  .card[data-letter="C"].active {
-    background-color: #4caf50; /* color del Compress */
-    color: white;
-  }
+.card {
+  background-color: #ff4747; /* Rosa claro por defecto */
+  padding: 20px;
+  margin: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
 
-  .card {
-    transition: background 0.4s ease, color 0.4s ease;
-  }
-
+.card.active {
+  background-color: rgb(238, 234, 226); /* Naranja cuando está activa */
+  transform: scale(1.05);
+}
