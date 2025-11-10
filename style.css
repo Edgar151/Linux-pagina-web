@@ -152,9 +152,10 @@ spline-viewer{
   pointer-events: none;
 }
 
-/* 🔵 Efecto de resaltado dinámico entre tarjetas */
+/* 🔶 Tarjeta activa (como Alert 911) */
 .card.active {
-  background: var(--blue);
+  background: #f06543; /* mismo tono del Alert 911 */
   color: #fff;
   transition: background 0.4s ease, color 0.4s ease;
 }
+

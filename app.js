@@ -139,4 +139,25 @@
   }
   render();
 })();
+
+
+// 🔄 Efecto de cambio de color entre tarjetas (usa el botón con id="netx")
+const nextBtn = document.getElementById("netx");
+const allCards = document.querySelectorAll(".card");
+let activeIndex = 0;
+
+function updateCardColors() {
+  allCards.forEach((card, i) => {
+    card.classList.toggle("active", i === activeIndex);
+  });
+}
+
+// Estado inicial: primera tarjeta activa
+updateCardColors();
+
+nextBtn.addEventListener("click", () => {
+  activeIndex = (activeIndex + 1) % allCards.length;
+  updateCardColors();
+});
+
 </script>
