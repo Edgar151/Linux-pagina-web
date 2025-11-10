@@ -142,7 +142,7 @@
 
 
 // 🔄 Efecto de cambio de color entre tarjetas (usa el botón con id="netx")
-const nextBtn = document.getElementById("netx");
+const nextBtn = document.getElementById("next");
 const allCards = document.querySelectorAll(".card");
 let activeIndex = 0;
 
