@@ -152,10 +152,21 @@ spline-viewer{
   pointer-events: none;
 }
 
-/* 🔶 Tarjeta activa (como Alert 911) */
-.card.active {
-  background: #f06543; /* mismo tono del Alert 911 */
-  color: #fff;
-  transition: background 0.4s ease, color 0.4s ease;
-}
+  /* Colores específicos para cada tarjeta */
+  .card[data-letter="A"].active {
+    background-color: #ff4747; /* color del Alert 911 */
+    color: white;
+  }
+  .card[data-letter="B"].active {
+    background-color: #ffbb33; /* color del Bleeding */
+    color: white;
+  }
+  .card[data-letter="C"].active {
+    background-color: #4caf50; /* color del Compress */
+    color: white;
+  }
+
+  .card {
+    transition: background 0.4s ease, color 0.4s ease;
+  }
 
