@@ -1,5 +1,4 @@
-Codigo tarea:  <script>
-
+<script>
 (async () => {
   // 1) Datos de páginas (15 ejemplos). Cambia spline según tus escenas.
   const S = "https://prod.spline.design/GI4C-E-MV0RERVEJ/scene.splinecode";
@@ -24,13 +23,13 @@ Codigo tarea:  <script>
   // 2) Hooks del DOM
   const viewer = document.querySelector(".spline-box spline-viewer");
   const prevBtn = document.getElementById("prev");
-  const nextBtn = document.getElementById("next");
+  const nextBtn = document.getElementById("netx"); // 👈 usa 'netx' aquí
   const countEl = document.getElementById("count");
   const totalEl = document.getElementById("total");
   const cards   = Array.from(document.querySelectorAll(".cards .card"));
   const box     = document.querySelector(".spline-box");
 
-  // 3) CSS mínimo inyectado: loader + resalte activo
+  // 3) CSS mínimo inyectado
   const injectStyles = () => {
     const css = `
       .spline-box{ position:relative; }
@@ -46,6 +45,12 @@ Codigo tarea:  <script>
         box-shadow: 0 8px 24px rgba(84,104,255,.25);
       }
       .toolbar .btn[disabled]{ opacity:.5; pointer-events:none; }
+      /* 🎨 clase activa para cambio de color */
+      .card.active{
+        background: var(--blue);
+        color: #fff;
+        transition: background 0.4s ease, color 0.4s ease;
+      }
     `;
     const style = document.createElement("style");
     style.textContent = css;
@@ -77,7 +82,6 @@ Codigo tarea:  <script>
   const setSpline = (url) => {
     if (!viewer) return;
     showLoader();
-    // Limpia listeners previos para evitar acumulación
     const onLoaded = () => {
       viewer.removeEventListener("load", onLoaded);
       hideLoader();
@@ -97,6 +101,23 @@ Codigo tarea:  <script>
   prevBtn.addEventListener("click", () => { if (idx > 0) { idx--; render(); } });
   nextBtn.addEventListener("click", () => { if (idx < pages.length - 1) { idx++; render(); } });
 
+  // 🔄 Efecto de cambio de color entre tarjetas
+  let activeIndex = 0;
+  const allCards = document.querySelectorAll(".card");
+
+  function updateCardColors() {
+    allCards.forEach((card, i) => {
+      card.classList.toggle("active", i === activeIndex);
+    });
+  }
+
+  updateCardColors(); // estado inicial
+
+  nextBtn.addEventListener("click", () => {
+    activeIndex = (activeIndex + 1) % allCards.length;
+    updateCardColors();
+  });
+
   // Flechas de teclado
   window.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight") nextBtn.click();
@@ -112,30 +133,10 @@ Codigo tarea:  <script>
     });
   });
 
-  // 7) Espera a que el custom element esté listo antes del primer render
+  // 7) Espera al elemento spline antes del primer render
   if (window.customElements && customElements.whenDefined) {
     await customElements.whenDefined("spline-viewer");
   }
   render();
 })();
-
-
-// 🔄 Efecto de cambio de color entre tarjetas (usa el botón con id="netx")
-let activeIndex = 0;
-const allCards = document.querySelectorAll(".card");
-
-function updateCardColors() {
-  allCards.forEach((card, i) => {
-    card.classList.toggle("active", i === activeIndex);
-  });
-}
-
-updateCardColors(); // estado inicial
-
-nextBtn.addEventListener("click", () => {
-  activeIndex = (activeIndex + 1) % allCards.length;
-  updateCardColors();
-});
-
-
-    </script>
+</script>
