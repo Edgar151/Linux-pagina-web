@@ -119,4 +119,23 @@ Codigo tarea:  <script>
   render();
 })();
 
+
+// 🔄 Efecto de cambio de color entre tarjetas (usa el botón con id="netx")
+let activeIndex = 0;
+const allCards = document.querySelectorAll(".card");
+
+function updateCardColors() {
+  allCards.forEach((card, i) => {
+    card.classList.toggle("active", i === activeIndex);
+  });
+}
+
+updateCardColors(); // estado inicial
+
+nextBtn.addEventListener("click", () => {
+  activeIndex = (activeIndex + 1) % allCards.length;
+  updateCardColors();
+});
+
+
     </script>
